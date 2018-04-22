@@ -11,9 +11,7 @@ spec:
     targetPort: 27017
   selector:
     run: mongo
-  type: LoadBalancer
-  loadBalancerSourceRanges:
-  - 0.0.0.0/0
+  type: ClusterIP
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
