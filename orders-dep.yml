@@ -7,14 +7,13 @@ metadata:
 spec:
   ports:
     # the port that this service should serve on
-    - port: 8080
+    - name: http-orders 
+      port: 8080
       protocol: TCP
       targetPort: 8080
   selector:
       run: orders
-  type: LoadBalancer
-  loadBalancerSourceRanges:
-  - 0.0.0.0/0
+  type: ClusterIP
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment

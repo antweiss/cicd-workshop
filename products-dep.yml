@@ -6,14 +6,13 @@ metadata:
     run: products
 spec:
   ports:
-    - port: 5000
+    - name: http-prod
+      port: 5000
       protocol: TCP
       targetPort: 5000
   selector:
       run: products
-  type: LoadBalancer
-  loadBalancerSourceRanges:
-  - 0.0.0.0/0
+  type: ClusterIP
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment

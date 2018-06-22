@@ -6,7 +6,8 @@ metadata:
     run: front
 spec:
   ports:
-    - port: 3000
+    - name: http-front 
+      port: 3000
       protocol: TCP
       targetPort: 3000
   selector:
@@ -28,6 +29,6 @@ spec:
     spec:
       containers:
       - name: front
-        image: otomato/oto-front:7
+        image: otomato/oto-front:tracing4
         ports:
         - containerPort: 3000
