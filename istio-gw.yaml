@@ -11,8 +11,8 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - "prodman-staging.otomato.io"
     - "prodman.otomato.io"
+    - "prodmanstaging.otomato.io"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -20,7 +20,7 @@ metadata:
   name: front-staging
 spec:
   hosts:
-  - "prodman-staging.otomato.io"
+  - "prodmanstaging.otomato.io"
   gateways:
   - shop-gateway
   http:
@@ -45,3 +45,7 @@ spec:
         host: front.production.svc.cluster.local
         port:
           number: 3000
+    mirror:
+      host: front.staging.svc.cluster.local
+      port:
+        number: 3000
