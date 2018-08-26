@@ -1,0 +1,47 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: shop-gateway
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "prodman-staging.otomato.io"
+    - "prodman.otomato.io"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: front-staging
+spec:
+  hosts:
+  - "prodman-staging.otomato.io"
+  gateways:
+  - shop-gateway
+  http:
+  - route:
+    - destination:
+        host: front.staging.svc.cluster.local
+        port:
+          number: 3000
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: front-production
+spec:
+  hosts:
+  - "prodman.otomato.io"
+  gateways:
+  - shop-gateway
+  http:
+  - route:
+    - destination:
+        host: front.production.svc.cluster.local
+        port:
+          number: 3000

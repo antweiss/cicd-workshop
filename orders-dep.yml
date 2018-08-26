@@ -12,9 +12,6 @@ spec:
       targetPort: 8080
   selector:
       run: orders
-  type: LoadBalancer
-  loadBalancerSourceRanges:
-  - 0.0.0.0/0
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
